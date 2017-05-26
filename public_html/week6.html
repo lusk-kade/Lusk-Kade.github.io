@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+    <head>
+        <title>javaScript Events</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript"></script>
+        <style>
+        #theBox {
+            width: 700px;
+            height: 200px;
+            position: relative;
+            background:gray;
+        }
+        #theImg {
+            width:200px;
+            height:200px;
+            position: absolute;
+            background: orange;
+            transition: color 2s;
+            font-weight: 900;
+        }
+        #theImg:hover{
+            color:gray;
+            
+        }
+    </style>
+    </head>
+   
+    <body>
+        <p id="mouse" onmousedown="mouseDown()" onmouseup="mouseUp()">
+        Welcome to the world of events. Lets see what javaScript can do!
+        Press the mouse button down over this text to see what happens.</p>
+        <script>
+        function mouseDown(){
+            document.getElementById("mouse").style.color = "white";
+        }
+        function mouseUp(){
+            document.getElementById("mouse").style.color = "orange";
+        }
+        </script>
+        <iframe id= "myVideo" width="320" height="360" 
+         src="https://www.youtube.com/embed/wqhR37qSUMA" allowfullscreen></iframe>
+        
+        <p id="demo"></p>
+        <script>
+        document.getElementById("myVideo").onload = function() {displayLine();};
+        function displayLine(){
+            document.getElementById("demo").innerHTML = "You may now play the video.";
+            
+        }
+        </script>
+ 
+        <p>
+            <button onclick ="slideMe()">Watch Me Slide</button>
+        </p>
+        <div id ="theBox">
+            <div id ="theImg"></div>
+        </div>
+        <script>
+        function slideMe(){
+            var elem = document.getElementById("theImg");
+            var pos = 0;
+            var id = setInterval(frame,5);
+            function frame(){
+                if (pos === 500){
+                    clearInterval(id);
+                }else{
+                    pos++;
+                    elem.style.left = pos + 'px';
+                }
+            }
+        }
+        </script>
+        <P>Hover over the orange block</P>
+        <script>
+            document.getElementById("theImg").addEventListener("transitionend",endThis);
+            function endThis(){
+                this.innerHTML = "Transitionend works off the event listener hover";
+            }
+            
+        </script>
+    </body>
+</html>
